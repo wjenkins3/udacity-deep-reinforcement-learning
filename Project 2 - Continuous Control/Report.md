@@ -14,7 +14,7 @@ The agent shall achieve an average score ≥ +30 over 100 consecutive episodes.
 
 This agent uses the Deep Deterministic Policy Gradients (DDPG) algorithm to solve the environment. The Unity environment where 20 identical agents each with its own copy of the environment was solved with this actor-critic method. Each agent takes an action in their respective environments based on the actor policy model; the critic aims to maximize the value the agent receives. The actor model uses two fully connected hidden layers with ReLU nonlinear activation functions followed by a fully connected output layer with a hyperbolic tangent activation for the actor vector. The critic model also uses fully connected hidden layers but the action is not input until the second layer. These layers use a leaky ReLU as the activation function.
 
-![Model Architecture](assets/nn_svg.jpg)
+![Model Architecture](assets/nn_svg.JPG)
 
 The agent follows the following steps to learn how to maintain the target position.
 
