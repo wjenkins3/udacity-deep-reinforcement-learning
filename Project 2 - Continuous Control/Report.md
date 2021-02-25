@@ -12,7 +12,7 @@ The agent shall achieve an average score ≥ +30 over 100 consecutive episodes.
 
 ## Learning Algorithm
 
-This agent uses the Deep Deterministic Policy Gradients (DDPG) algorithm to solve the environment. The Unity environment where 20 identical agents each with its own copy of the environment was solved with this actor-critic method. Each agent takes an action in their respective environments based on the actor policy model; the critic aims to maximize the value the agent receives. The actor model uses two fully connected hidden layers with ReLU nonlinear activation functions followed by a fully connected output layer with a hyperbolic tangent activation for the actor vector. The critic model also uses fully connected hidden layers but the action is not input until the second layer. These layers use a leaky ReLU as the activation function.
+This agent uses the Deep Deterministic Policy Gradients (DDPG) algorithm to solve the environment. The Unity environment where 20 identical agents each with its own copy of the environment was solved with this actor-critic method. Each agent takes an action in their respective environments based on the actor policy model; the critic aims to maximize the value the agent receives.
 
 ![Model Architecture](assets/nn_svg.JPG)
 
@@ -50,6 +50,11 @@ where hyperparameters:
 NOTE: The noise weight decays to zero after 400 steps to help stabilize the actor-critic learning`
 ```
 
+### Implementation Details
+
+*Adapted from Section 7 the [DDPG paper](https://arxiv.org/abs/1509.02971)*
+Adam was used for learning the neural network parameters with a learning rate of 1e-3 for both the actor and critic models. For Q, a discount factor of 0.99 was used. The actor model uses two fully connected hidden layers with ReLU nonlinear activation functions followed by a fully connected output layer with a hyperbolic tangent activation for the actor vector. Each of these hidden layers had 168 units. The critic model also uses fully connected hidden layers but the action is not input until the second layer. These layers use a leaky ReLU as the activation function. The critic model also encoded the state into 168 units in the first hidden layer. The second hidden layer after the combined encoded state and action also has 168 units. The final layer weights and biases of both the actor and critic models were initialized from a uniform distribution [-3e-3, 3e-3]; the other layers were initialized from a uniform distribution [-&Sqrt;1/f, &Sqrt;1/f], where f is the fan-in of the layer.
+
 ## Results
 
 After 91 episodes, the agents were able to achieve an average score of +30. The plot below shows how the average score of the 20 agents evolved with each episode as well as the 100-episode window score.
@@ -66,6 +71,6 @@ The plot of the scores during learning shows a dip in average score right before
 
 + Implement a prioritzed experience replay to help expedite training time and potential stability (if the lower average scores are any indication of that)
 
-+ Substitute the action noise for parameter noise as suggested by ![this paper](https://arxiv.org/abs/1706.01905) to try for performance boosts.
++ Substitute the action noise for parameter noise as suggested by [this paper](https://arxiv.org/abs/1706.01905) to try for performance boosts.
 
 + Extend the DDPG algorithm to Distributed Distributional DDPG (D4PG) to see the effect N-step returns provide.
