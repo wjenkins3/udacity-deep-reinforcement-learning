@@ -69,7 +69,7 @@ The next plot shows the average score of the 20 agents over 100 episodes when no
 
 The plot of the scores during learning shows a dip in average score right before the agent solves the environment. In the future the agent can run beyond the needed episodes to solve the environment to try to better its scores. Also there are a number of approaches that could improve the agent's learning performance.
 
-+ Implement a prioritzed experience replay to help expedite training time and potential stability (if the lower average scores are any indication of that)
++ Implement a prioritized experience replay to help expedite training time and potential stability (if the lower average scores are any indication of that)
 
 + Substitute the action noise for parameter noise as suggested by [this paper](https://arxiv.org/abs/1706.01905) to try for performance boosts.
 
